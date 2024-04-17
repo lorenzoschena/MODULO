@@ -44,6 +44,7 @@ class MODULO:
     def __init__(self, data: np.array,
                  N_PARTITIONS: int = 1,
                  FOLDER_OUT='./',
+                 SAVE_K: bool = False,
                  N_T: int = 100,
                  N_S: int = 200,
                  n_Modes: int = 10,
@@ -66,6 +67,9 @@ class MODULO:
         
         :param FOLDER_OUT: Folder in which the output will be stored.The output includes the matrices Phi, Sigma and Psi (optional) and temporary files 
                used for some of the calculations (e.g.: for memory saving).
+
+        :param  SAVE_K:  A flag deciding if the matrix will be stored in the disk (in FOLDER_OUT/correlation_matrix) or not.
+            Default option is 'False'.
         
         :param N_T: Number of time steps, must be given when N_PARTITIONS >1
         
@@ -160,38 +164,13 @@ class MODULO:
 
         self.FOLDER_OUT = FOLDER_OUT
 
+        self.SAVE_K = SAVE_K
+
         if self.MEMORY_SAVING:
             os.makedirs(self.FOLDER_OUT, exist_ok=True)
 
-    def _correlation_matrix(self,
-                            SAVE_K: bool = True):
-        """
-        This method computes the time correlation matrix. Here the memory saving is
-        beneficial for large datasets. Since the matrix could be potentially heavy, it is automatically stored on disk to 
-        minimize the usage of the RAM. This feature can be deactivated by setting SAVE_K = False. 
-        In this case, the correlation matrix is returned to the main class.
-
-        :param SAVE_K: bool
-            A flag deciding if the matrix will be stored in the disk (in FOLDER_OUT/MODULO_tmp) or not. 
-            Default option is 'True'. This attribute is passed to the class 
-            in order to decide if it has to be loaded from disk or not.
-
-
-        :return K: np.array
-                The correlation matrix D^T D (as class attribute) if Memory saving is not active. 
-                Otherwise, it returns None and the matrix is automatically saved on disk.
-
-        """
-
-        self.SAVE_K = SAVE_K
-
-        self.K = CorrelationMatrix(self.N_T, self.N_PARTITIONS, self.MEMORY_SAVING,
-                                   self.FOLDER_OUT, self.SAVE_K, D=self.Dstar, weights=self.weights)
-
-        return
-
     def _temporal_basis_POD(self,
-                            SAVE_T_POD: bool = True):
+                            SAVE_T_POD: bool = False):
         """
         This method computes the temporal structure for the Proper Orthogonal Decomposition (POD) computation. 
         The theoretical background of the POD is briefly recalled here:
@@ -399,7 +378,7 @@ class MODULO:
         print('Computing correlation matrix D matrix...')
         self.K = CorrelationMatrix(self.N_T, self.N_PARTITIONS,
                                    self.MEMORY_SAVING,
-                                   self.FOLDER_OUT, D=self.Dstar)
+                                   self.FOLDER_OUT,self.SAVE_K, D=self.Dstar)
 
         if self.MEMORY_SAVING:
             self.K = np.load(self.FOLDER_OUT + '/correlation_matrix/k_matrix.npz')['K']
@@ -432,7 +411,7 @@ class MODULO:
 
         return Phi_M, Psi_M, Sigma_M
 
-    def compute_POD_K(self, SAVE_T_POD: bool = True):
+    def compute_POD_K(self, SAVE_T_POD: bool = False):
         """
         This method computes the Proper Orthogonal Decomposition (POD) of a dataset
         using the snapshot approach, i.e. working on the temporal correlation matrix.
@@ -454,7 +433,7 @@ class MODULO:
         print('Computing correlation matrix D matrix...')
         self.K = CorrelationMatrix(self.N_T, self.N_PARTITIONS,
                                    self.MEMORY_SAVING,
-                                   self.FOLDER_OUT, D=self.Dstar, weights=self.weights)
+                                   self.FOLDER_OUT, self.SAVE_K, D=self.Dstar, weights=self.weights)
 
         if self.MEMORY_SAVING:
             self.K = np.load(self.FOLDER_OUT + '/correlation_matrix/k_matrix.npz')['K']
@@ -487,7 +466,7 @@ class MODULO:
 
         return Phi_P, Psi_P, Sigma_P
 
-    def compute_POD_svd(self, SAVE_T_POD: bool = True):
+    def compute_POD_svd(self, SAVE_T_POD: bool = False):
         """
         This method computes the Proper Orthogonal Decomposition (POD) of a dataset
         using the SVD decomposition. The svd solver is defined by 'svd_solver'.
@@ -681,7 +660,7 @@ class MODULO:
             D = np.load(self.FOLDER_OUT + '/MODULO_tmp/data_matrix/database.npz')['D']
 
             self.K = CorrelationMatrix(self.N_T, self.N_PARTITIONS, self.MEMORY_SAVING,
-                                       self.FOLDER_OUT, D=D)
+                                       self.FOLDER_OUT,self.SAVE_K, D=D)
 
             Phi_sP, Psi_sP, Sigma_sP = compute_SPOD_s(D, self.K, F_S, self.N_S, self.N_T, N_O, f_c,
                                                       n_Modes, SAVE_SPOD, self.FOLDER_OUT, self.MEMORY_SAVING,
@@ -689,7 +668,7 @@ class MODULO:
 
         else:
             self.K = CorrelationMatrix(self.N_T, self.N_PARTITIONS, self.MEMORY_SAVING,
-                                       self.FOLDER_OUT, D=self.D)
+                                       self.FOLDER_OUT,self.SAVE_K, D=self.D)
 
             Phi_sP, Psi_sP, Sigma_sP = compute_SPOD_s(self.D, self.K, F_S, self.N_S, self.N_T, N_O, f_c,
                                                       n_Modes, SAVE_SPOD, self.FOLDER_OUT, self.MEMORY_SAVING,
