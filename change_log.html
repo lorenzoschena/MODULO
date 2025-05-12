@@ -31,6 +31,7 @@
           
           <a href="index.html">
             
+              <img src="_static/modulo_logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -58,10 +59,12 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Versions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id1">2.1.0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">2.0.7</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Versions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.0.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -90,15 +93,14 @@
              
   <section id="versions">
 <h1>Versions<a class="headerlink" href="#versions" title="Link to this heading">¶</a></h1>
-</section>
 <section id="id1">
-<h1>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
+<h2>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><cite>mPOD</cite> bug fix: the previous version of the mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.</p></li>
 </ul>
 </section>
 <section id="id2">
-<h1>2.0.7<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
+<h2>2.0.7<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>Major updates:</p>
 <p>1. Faster EIG/SVD algorithms, using powerful randomized svd solvers from scikit_learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">TruncatedSVD</a>
 and
@@ -114,7 +116,7 @@ and
 </ol>
 </section>
 <section id="before-modulo-2-0-previous-versions">
-<h1>Before MODULO 2.0: previous versions<a class="headerlink" href="#before-modulo-2-0-previous-versions" title="Link to this heading">¶</a></h1>
+<h2>Before MODULO 2.0: previous versions<a class="headerlink" href="#before-modulo-2-0-previous-versions" title="Link to this heading">¶</a></h2>
 <p>The first version was developed in Matlab and was equipped with a GUI by D. Ninni.
 A minicourse on data-driven decompositions and the usage of MODULO was provided here:</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=ED3x00H4yN4&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=1">https://www.youtube.com/watch?v=ED3x00H4yN4&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=1</a></p>
@@ -127,6 +129,7 @@ The GUI was also available as an executable that the user could install without 
 A tutorial on how to use that version is given here:</p>
 <p><a class="reference external" href="https://www.youtube.com/watch?v=y2uSvdxAwHk&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=9">https://www.youtube.com/watch?v=y2uSvdxAwHk&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=9</a></p>
 <p>The current architecture of MODULO v2 is built from that version but has been considerably expanded. This first Python version is still accessible from the branch “Old_Python_Implementation” together with the first (unpackaged) versions of the codes. These are still used in some courses for didactic purposes.</p>
+</section>
 </section>
 
 
