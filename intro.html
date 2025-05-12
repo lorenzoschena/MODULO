@@ -58,6 +58,14 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_data.html">Importing data and D matrix preparation</a></li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/dft/index.html">Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="api/dft.html">DFT</a></li>
@@ -97,27 +105,33 @@
 <h1>Introduction to MODULO<a class="headerlink" href="#introduction-to-modulo" title="Link to this heading">¶</a></h1>
 <p>MODULO (MODal mULtiscale pOd) is a Python package developed at the von Karman Institute for Fluid Dynamics to perform a variety of <strong>data-driven modal decompositions</strong>.
 These decompositions seek to approximate a high-dimensional dataset as a linear combination of a small number of coherent building blocks—often called <strong>modes</strong>—which capture the most salient spatio-temporal patterns.</p>
-<p>Each mode (r) is characterized by:</p>
+<p>Each mode <span class="math notranslate nohighlight">\(r`\)</span> is characterized by:</p>
 <ul class="simple">
-<li><p><strong>Spatial structure</strong> (phi_r(x)), which encodes the “shape” of the pattern in space,</p></li>
-<li><p><strong>Temporal structure</strong> (psi_r(t)), which describes how that pattern evolves in time,</p></li>
-<li><p><strong>Amplitude</strong> (sigma_r), which quantifies the energy or variance captured by the mode.</p></li>
+<li><p><strong>Spatial structure</strong> <span class="math notranslate nohighlight">\(\mathbf{\phi}_r\)</span>, which encodes the the pattern in space,</p></li>
+<li><p><strong>Temporal structure</strong> <span class="math notranslate nohighlight">\(\mathbf{\psi}_r\)</span>, which describes how that pattern evolves in time,</p></li>
+<li><p><strong>Amplitude</strong> <span class="math notranslate nohighlight">\(\sigma_r\)</span>, which quantifies the modal amplitude, e.g. energy or variance captured by the mode.</p></li>
 </ul>
 <p>The field of applications ranges from <strong>reduced-order modeling</strong> (ROM) and <strong>flow control</strong> to <strong>filtering</strong>, and <strong>feature extraction</strong>.
-For a comprehensive review of modal methods in fluid dynamics, see Mendez _et al._ (2023) <span id="id1">[<a class="reference internal" href="#id11" title="Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. Measurement Science and Technology, 34:042001, January 2023. doi:10.1088/1361-6501/acaffe.">1</a>]</span>.</p>
+For a comprehensive review of modal methods in fluid dynamics, see Mendez et al. (2023) <span id="id1">[<a class="reference internal" href="#id11" title="Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. Measurement Science and Technology, 34:042001, January 2023. doi:10.1088/1361-6501/acaffe.">1</a>]</span>.</p>
 <section id="key-features-of-modulo">
 <h2>Key features of MODULO<a class="headerlink" href="#key-features-of-modulo" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Multiple decomposition algorithms</strong>
-- <strong>POD</strong> (Proper Orthogonal Decomposition) via the snapshot method or SVD
-- <strong>mPOD</strong> (Multiscale POD) for frequency-band separation
-- <strong>SPOD</strong> (Spectral POD)
-- <strong>DFT</strong> (Discrete Fourier Transform)
-- <strong>DMD</strong> (Dynamic Mode Decomposition)
-- <strong>KPOD</strong> (Kernel POD)</p></li>
-<li><p><strong>Memory-efficient implementations</strong>
-- Partition-based loading for very large datasets
-- On-disk correlation matrices (Ninni et _et al._ (2020) <span id="id2">[<a class="reference internal" href="#id7" title="Davide Ninni and Miguel A. Mendez. Modulo: a software for multiscale proper orthogonal decomposition of data. SoftwareX, 12:100622, 12 2020. doi:10.1016/j.softx.2020.100622.">2</a>]</span>)</p></li>
+<li><p><strong>Multiple decomposition algorithms</strong>:</p>
+<ul>
+<li><p><strong>POD</strong> (Proper Orthogonal Decomposition) via the snapshot method or SVD</p></li>
+<li><p><strong>mPOD</strong> (Multiscale POD) for frequency‐band separation</p></li>
+<li><p><strong>SPOD</strong> (Spectral POD)</p></li>
+<li><p><strong>DFT</strong> (Discrete Fourier Transform)</p></li>
+<li><p><strong>DMD</strong> (Dynamic Mode Decomposition)</p></li>
+<li><p><strong>KPOD</strong> (Kernel POD)</p></li>
+</ul>
+</li>
+<li><p><strong>Memory‐efficient implementations</strong>:</p>
+<ul>
+<li><p>Partition‐based loading for very large datasets</p></li>
+<li><p>On‐disk correlation matrices (Ninni et al., 2020) <span id="id2">[<a class="reference internal" href="#id7" title="Davide Ninni and Miguel A. Mendez. Modulo: a software for multiscale proper orthogonal decomposition of data. SoftwareX, 12:100622, 12 2020. doi:10.1016/j.softx.2020.100622.">2</a>]</span></p></li>
+</ul>
+</li>
 </ul>
 <div class="docutils container" id="id3">
 <div role="list" class="citation-list">
@@ -134,7 +148,7 @@ For a comprehensive review of modal methods in fluid dynamics, see Mendez _et al
 </section>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
-<p>MODULO is published on PyPI and can be installed with <cite>pip install modulo_vki</cite> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). The user is first
+<p>MODULO is published on PyPI and can be installed with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">modulo_vki</span></code> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). The user is first
 requested to assemble the matrix field to be decomposed, or the folder of the raw files to be imported if she wants to use the
 data loading routines present in the auxialliary code of MODULO. We refer the reader to <a class="reference internal" href="importing_data.html"><span class="doc">Importing data and D matrix preparation</span></a> for an example
 on the usage of these routines, and now we illustrate the case in which the matrix <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> is already available in memory.
