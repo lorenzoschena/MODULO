@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Theory &mdash; MODULO 2.1.0 documentation</title>
+  <title>Theory &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -18,9 +18,7 @@
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Example in MODULO" href="basic_usage.html" />
-    <link rel="prev" title="Multiscale Proper Orthogonal Decomposition (mPOD)" href="index.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,15 +52,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../weights_inner.html">Weighted inner product for non-cartesian meshes</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data-Driven Modal Decompositions</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../dft/index.html">Discrete Fourier Transform (DFT)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. Example in MODULO</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
 </ul>
@@ -93,8 +87,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Theory</li>
+      <li class="breadcrumb-item active">Theory</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/decompositions/mpod/theory.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,7 +98,7 @@
            <div itemprop="articleBody">
              
   <section id="theory">
-<h1><span class="section-number">1. </span>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
+<h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
 <p>The main idea of the mPOD is to perform a POD on non-overlapping portions of the frequency domain of the signal :cite: <cite>ninni_modulo_2020</cite>.
 Considering a signal <span class="math notranslate nohighlight">\(\mathbf{u}(t)\)</span> defined in the time domain, sampled with a sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>, one can define to
 isolate phenomena of interest belonging in different frequency bands identified by :math: <cite>M</cite> frequency bands. This divides the frequency
@@ -133,10 +126,7 @@ the mPOD is equivalent to DFT.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Multiscale Proper Orthogonal Decomposition (mPOD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="basic_usage.html" class="btn btn-neutral float-right" title="2. Example in MODULO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 

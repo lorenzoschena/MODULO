@@ -15,11 +15,12 @@
       <script src="../../_static/documentation_options.js?v=20623aea"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Theory" href="theory.html" />
-    <link rel="prev" title="2. Example in MODULO" href="../dft/basic_usage.html" /> 
+    <link rel="next" title="Dynamic Mode Decomposition (DMD)" href="../dmd/index.html" />
+    <link rel="prev" title="Discrete Fourier Transform (DFT)" href="../dft/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -56,8 +57,8 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../dft/index.html">Discrete Fourier Transform (DFT)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Proper Orthogonal Decomposition (POD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">Example in MODULO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theory">Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-in-modulo">Example in MODULO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
@@ -105,20 +106,54 @@
   <section id="proper-orthogonal-decomposition-pod">
 <h1>Proper Orthogonal Decomposition (POD)<a class="headerlink" href="#proper-orthogonal-decomposition-pod" title="Link to this heading">¶</a></h1>
 <p>This document offers a brief reference guide to the use of the Proper Orthogonal Decomposition (POD).</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">Theory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">Example in MODULO</a></li>
-</ul>
+<section id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
+<p>The POD is an energy-based decomposition, which provides the modes capturing the largest amount of energy (variance) in the dataset,
+such that the convergence of an approximation with increasing number of modes is optimal.</p>
+<p>The temporal structures satisfying these properties are the eigenvectors of the temporal correlation matrix <span class="math notranslate nohighlight">\(\mathbf{K}=\langle \mathbf{u}(x, t), \mathbf{u}(x, t)\rangle\)</span>,
+where <span class="math notranslate nohighlight">\(\langle \cdot \rangle\)</span> defines a suitable inner product. Thus,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K} \psi_{r}(t_k) = \lambda_r \psi_{r}(t_k) \quad r \in [1, R]\]</div>
+<p>that yields to the factorization of <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K} = \sum_{r=1}^R \lambda_r \psi_r \psi_r^\top \;,\]</div>
+<p>recalling that the correlation matrix is symmetric and positive definite. Under this condition, the POD is’properly’ orthogonal, that is,
+also the spatial structures <span class="math notranslate nohighlight">\(\psi_r\)</span> are orthonormal by construction.</p>
+<p>Moreover, because of this proper orthogonality, the amplitudes of the modes are <span class="math notranslate nohighlight">\(\sigma_r = \sqrt{\lambda_r}\)</span> and lead to the
+direct computation of the spatial structures via correlation:</p>
+<div class="math notranslate nohighlight">
+\[\psi_r(x) = \frac{1}{\sigma_r}\langle \mathbf{u}(x, t), \psi_r(t) \rangle_T = \frac{1}{\sigma_r} \sum_{k=1}^{n_t} \mathbf{u}(x, t) \phi_r(x)\;.\]</div>
+<p>We note also that because of this joint orthonormality, one might decide to work with the temporal correlation matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> or the spatial
+analogue <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> depending on the shape of the dataset, and arrive to the same result.</p>
+<p>An alternative path is offered by computing the SVD of the dataset <span class="math notranslate nohighlight">\(\mathbf{D}\)</span>, yielding the same modes if the POD inner-product coincides with the
+standard Euclidean one used in the SVD procedure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">POD</span></code> uses the temporal‐correlation approach; to switch to SVD, pass <code class="docutils literal notranslate"><span class="pre">method='svd'</span></code>.</p>
 </div>
+</section>
+<section id="example-in-modulo">
+<h2>Example in MODULO<a class="headerlink" href="#example-in-modulo" title="Link to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki.modulo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuloVKI</span>
+
+<span class="c1"># --- Initialize MODULO object</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">ModuloVKI</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="c1"># Compute the POD using Sirovinch&#39;s method</span>
+<span class="n">Phi_POD</span><span class="p">,</span> <span class="n">Psi_POD</span><span class="p">,</span> <span class="n">Sigma_POD</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">POD</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;K&#39;</span><span class="p">)</span>
+<span class="c1"># compute the POD using SVD</span>
+<span class="n">Phi_SVD</span><span class="p">,</span> <span class="n">Psi_SVD</span><span class="p">,</span> <span class="n">Sigma_SVD</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">POD</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;SVD&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../dft/basic_usage.html" class="btn btn-neutral float-left" title="2. Example in MODULO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="theory.html" class="btn btn-neutral float-right" title="Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../dft/index.html" class="btn btn-neutral float-left" title="Discrete Fourier Transform (DFT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dmd/index.html" class="btn btn-neutral float-right" title="Dynamic Mode Decomposition (DMD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

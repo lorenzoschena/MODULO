@@ -15,11 +15,12 @@
       <script src="../../_static/documentation_options.js?v=20623aea"></script>
       <script src="../../_static/doctools.js?v=9bcbadda"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1. Theory" href="theory.html" />
-    <link rel="prev" title="Example in MODULO" href="../dmd/basic_usage.html" /> 
+    <link rel="next" title="Kernel Proper Orthogonal Decomposition (K-POD)" href="../kpod/index.html" />
+    <link rel="prev" title="Dynamic Mode Decomposition (DMD)" href="../dmd/index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -58,8 +59,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Multiscale Proper Orthogonal Decomposition (mPOD)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">1. Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. Example in MODULO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#theory">Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-in-modulo">Example in MODULO</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
@@ -105,21 +106,78 @@
   <section id="multiscale-proper-orthogonal-decomposition-mpod">
 <h1>Multiscale Proper Orthogonal Decomposition (mPOD)<a class="headerlink" href="#multiscale-proper-orthogonal-decomposition-mpod" title="Link to this heading">¶</a></h1>
 <p>This document offers a brief reference guide to the use of the Multiscale Proper Orthogonal Decomposition (mPOD).</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Multiscale POD User Guide</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="theory.html">1. Theory</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">2. Example in MODULO</a></li>
-</ul>
+<section id="theory">
+<h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
+<p>The main idea of the mPOD is to perform a POD on non-overlapping portions of the frequency domain of the signal :cite: <cite>ninni_modulo_2020</cite>.
+Considering a signal <span class="math notranslate nohighlight">\(\mathbf{u}(t)\)</span> defined in the time domain, sampled with a sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>, one can define to
+isolate phenomena of interest belonging in different frequency bands identified by :math: <cite>M</cite> frequency bands. This divides the frequency
+in blocks, <span class="math notranslate nohighlight">\([0, f_1]\)</span>, <span class="math notranslate nohighlight">\([f_1, f_2]\)</span>, …, <span class="math notranslate nohighlight">\([f_{M-1}, f_M]\)</span> where <span class="math notranslate nohighlight">\(f_1, f_2, \ldots, f_M\)</span> are the frequencies of interest.</p>
+<p>The mPOD performs the MRA on the temporal correlation matrix <span class="math notranslate nohighlight">\(\mathbf{K} = \mathbf{D}^T \mathbf{D} \in \mathbb{R}^{n_t \times n_t}\)</span>. Given
+a list of suitable transfer functions <span class="math notranslate nohighlight">\(\left\{H_m\right\}_{m=1}^M\)</span>, the mPOD splits the matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K} = \sum_{m=1}^M \mathbf{K}_m = \sum_{m=1}^M \mathbf{\Psi}_F \big[ \hat{\mathbf{K}} \odot H_m \big] \mathbf{\Psi}_F\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\Psi}_F\)</span> is the Fourier transform matrix, <span class="math notranslate nohighlight">\(\hat{\mathbf{K}}=\bar{\mathbf{\Psi}_F \mathbf{K} \mathbf{\Psi}\)</span> is the
+2D Fourier transform of the correlation matrix, and <span class="math notranslate nohighlight">\(\odot\)</span> is the entry by entry product.</p>
+<p>The filtering ensures that the key properties of <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> are preserved, and thus characterised with a set of orthonormal eigenvectors
+and eigenvalues:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K}_m = \sum_{j=1}^{n_m} \lambda_{m,j} \Psi_{P, mj} \Psi_{P, mj}^T\]</div>
+<p>and <span class="math notranslate nohighlight">\(n_m\)</span> is the number of nonzero eigenvalues at each scale. This procedure also ensures that the eigenvectors of all scales
+are orthogonal complements that span <span class="math notranslate nohighlight">\(\mathbb{R}^{n_t}\)</span>.</p>
+<p>Finally, the mPOD temporal basis is constructed by collecting the POD basis of all scales, such that:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{\Psi}_M = [\mathbf{\Psi}_{1}, \mathbf{\Psi}_{2}, \ldots, \mathbf{\Psi}_{M}] \mathbf{P}_\mathbf{\Sigma}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{P}_\mathbf{\Sigma}\)</span> is a permutation matrix that ranks the structures in decreasing order of energy contribution.</p>
+<p>In conclusion, we note that the mPOD generalizes POD and DFT: for <span class="math notranslate nohighlight">\(M=1\)</span>, the mPOD is equivalent to POD, while for <span class="math notranslate nohighlight">\(M=n_t\)</span>,
+the mPOD is equivalent to DFT.</p>
+</section>
+<section id="example-in-modulo">
+<h2>Example in MODULO<a class="headerlink" href="#example-in-modulo" title="Link to this heading">¶</a></h2>
+<p>An example of the usage of the mPOD routine, extracted from the <cite>examples</cite> folder is reported below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki.modulo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuloVKI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_mPOD</span>
+
+<span class="n">FOLDER_MPOD_RESULTS</span><span class="o">=</span><span class="n">FOLDER</span><span class="o">+</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="o">+</span><span class="s1">&#39;mPOD_Results_Jet&#39;</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">FOLDER_MPOD_RESULTS</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">FOLDER_MPOD_RESULTS</span><span class="p">)</span>
+
+<span class="c1"># We here perform the mPOD as done in the previous tutorials.</span>
+<span class="c1"># This is mostly a copy paste from those, but we include it for completenetss</span>
+
+<span class="c1"># Updated in MODULO 2.1.0: mPOD requires now Keep and Nf of size len(F_V) + 1, to ensure all scales are computed. First entry specifies the low pass filter.</span>
+
+<span class="n">Keep</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">Nf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">201</span><span class="p">])</span>
+<span class="c1"># --- Test Case Data:</span>
+<span class="c1"># + Stand off distance nozzle to plate</span>
+<span class="n">H</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">/</span> <span class="mi">1000</span>
+<span class="c1"># + Mean velocity of the jet at the outlet</span>
+<span class="n">U0</span> <span class="o">=</span> <span class="mf">6.5</span>
+<span class="c1"># + Input frequency splitting vector in dimensionless form (Strohual Number)</span>
+<span class="n">ST_V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="c1"># + Frequency Splitting Vector in Hz</span>
+<span class="n">F_V</span> <span class="o">=</span> <span class="n">ST_V</span> <span class="o">*</span> <span class="n">U0</span> <span class="o">/</span> <span class="n">H</span>
+<span class="c1"># + Size of the extension for the BC (Check Docs)</span>
+<span class="n">Ex</span> <span class="o">=</span> <span class="mi">203</span>  <span class="c1"># This must be at least as Nf.</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2000</span><span class="p">;</span> <span class="n">boundaries</span> <span class="o">=</span> <span class="s1">&#39;reflective&#39;</span><span class="p">;</span> <span class="n">MODE</span> <span class="o">=</span> <span class="s1">&#39;reduced&#39;</span>
+<span class="c1"># Here &#39;s the mPOD</span>
+<span class="n">Phi_M</span><span class="p">,</span> <span class="n">Psi_M</span><span class="p">,</span> <span class="n">Sigmas_M</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">mPOD</span><span class="p">(</span><span class="n">Nf</span><span class="p">,</span> <span class="n">Ex</span><span class="p">,</span> <span class="n">F_V</span><span class="p">,</span> <span class="n">Keep</span><span class="p">,</span> <span class="mi">20</span> <span class="p">,</span><span class="n">boundaries</span><span class="p">,</span> <span class="n">MODE</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</pre></div>
 </div>
+<p>The variable <cite>Keep</cite> is a vector of size <cite>len(F_V) + 1</cite>, defines whether the scale is processed or not,
+while <cite>Nf</cite> is a vector of size <cite>len(F_V) + 1</cite> is the number of points in the frequency domain, and
+<cite>Ex</cite> is the size of the extension for the BC. The boundary conditions can be set to <cite>reflect</cite>, <cite>nearest</cite>,
+<cite>wrap</cite> or <cite>extract</cite>.</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../dmd/basic_usage.html" class="btn btn-neutral float-left" title="Example in MODULO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="theory.html" class="btn btn-neutral float-right" title="1. Theory" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../dmd/index.html" class="btn btn-neutral float-left" title="Dynamic Mode Decomposition (DMD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kpod/index.html" class="btn btn-neutral float-right" title="Kernel Proper Orthogonal Decomposition (K-POD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
