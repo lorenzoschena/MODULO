@@ -1,0 +1,163 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Multiscale Proper Orthogonal Decomposition (mPOD) &mdash; MODULO 2.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  
+      <script src="../../_static/documentation_options.js?v=20623aea"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Kernel Proper Orthogonal Decomposition (K-POD)" href="../kpod/index.html" />
+    <link rel="prev" title="Multiscale Proper Orthogonal Decomposition (mPOD)" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            MODULO
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../intro.html">MODULO: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../importing_data.html">Importing data and D matrix preparation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Decompositions</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Data-Driven Modal Decompositions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../dft/basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dft/index.html">Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dft/theory.html">1. Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/basic_usage.html">POD Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/theory.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">1. Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="basic_usage.html">2. mPOD example</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/dft.html">DFT</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/pod.html">POD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/mpod.html">mPOD</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Changelog Details</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">MODULO</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Data-Driven Modal Decompositions</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Multiscale Proper Orthogonal Decomposition (mPOD)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/decompositions/mpod/theory.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="multiscale-proper-orthogonal-decomposition-mpod">
+<h1><span class="section-number">1. </span>Multiscale Proper Orthogonal Decomposition (mPOD)<a class="headerlink" href="#multiscale-proper-orthogonal-decomposition-mpod" title="Link to this heading">¶</a></h1>
+<p>The main idea of the mPOD is to perform a POD on non-overlapping portions of the frequency domain of the signal :cite: <cite>ninni_modulo_2020</cite>.
+Considering a signal <span class="math notranslate nohighlight">\(\mathbf{u}(t)\)</span> defined in the time domain, sampled with a sampling frequency <span class="math notranslate nohighlight">\(f_s\)</span>, one can define to
+isolate phenomena of interest belonging in different frequency bands identified by :math: <cite>M</cite> frequency bands. This divides the frequency
+in blocks, <span class="math notranslate nohighlight">\([0, f_1]\)</span>, <span class="math notranslate nohighlight">\([f_1, f_2]\)</span>, …, <span class="math notranslate nohighlight">\([f_{M-1}, f_M]\)</span> where <span class="math notranslate nohighlight">\(f_1, f_2, \ldots, f_M\)</span> are the frequencies of interest.</p>
+<p>The mPOD performs the MRA on the temporal correlation matrix <span class="math notranslate nohighlight">\(\mathbf{K} = \mathbf{D}^T \mathbf{D} \in \mathbb{R}^{n_t \times n_t}\)</span>. Given
+a list of suitable transfer functions <span class="math notranslate nohighlight">\(\left\{H_m\right\}_{m=1}^M\)</span>, the mPOD splits the matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> as:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K} = \sum_{m=1}^M \mathbf{K}_m = \sum_{m=1}^M \mathbf{\Psi}_F \big[ \hat{\mathbf{K}} \odot H_m \big] \mathbf{\Psi}_F\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\Psi}_F\)</span> is the Fourier transform matrix, <span class="math notranslate nohighlight">\(\hat{\mathbf{K}}=\bar{\mathbf{\Psi}_F \mathbf{K} \mathbf{\Psi}\)</span> is the
+2D Fourier transform of the correlation matrix, and <span class="math notranslate nohighlight">\(\odot\)</span> is the entry by entry product.</p>
+<p>The filtering ensures that the key properties of <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> are preserved, and thus characterised with a set of orthonormal eigenvectors
+and eigenvalues:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{K}_m = \sum_{j=1}^{n_m} \lambda_{m,j} \Psi_{P, mj} \Psi_{P, mj}^T\]</div>
+<p>and <span class="math notranslate nohighlight">\(n_m\)</span> is the number of nonzero eigenvalues at each scale. This procedure also ensures that the eigenvectors of all scales
+are orthogonal complements that span <span class="math notranslate nohighlight">\(\mathbb{R}^{n_t}\)</span>.</p>
+<p>Finally, the mPOD temporal basis is constructed by collecting the POD basis of all scales, such that:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{\Psi}_M = [\mathbf{\Psi}_{1}, \mathbf{\Psi}_{2}, \ldots, \mathbf{\Psi}_{M}] \mathbf{P}_\mathbf{\Sigma}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{P}_\mathbf{\Sigma}\)</span> is a permutation matrix that ranks the structures in decreasing order of energy contribution.</p>
+<p>In conclusion, we note that the mPOD generalizes POD and DFT: for <span class="math notranslate nohighlight">\(M=1\)</span>, the mPOD is equivalent to POD, while for <span class="math notranslate nohighlight">\(M=n_t\)</span>,
+the mPOD is equivalent to DFT.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Multiscale Proper Orthogonal Decomposition (mPOD)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../kpod/index.html" class="btn btn-neutral float-right" title="Kernel Proper Orthogonal Decomposition (K-POD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025 von Karman Institute.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
