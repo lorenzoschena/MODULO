@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MODULO documentation &mdash; MODULO 2.1.0 documentation</title>
+  <title>MODULO (MODal mULtiscale pOd): Data-Driven Modal Analysis &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -29,8 +29,8 @@
 
           
           
-          <a href="#" class="icon icon-home">
-            MODULO
+          <a href="#">
+            
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -40,7 +40,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">MODULO: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -56,8 +56,12 @@
 <li class="toctree-l1"><a class="reference internal" href="api/pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/mpod.html">mPOD</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="change_log.html">Changelog Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#id1">2.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#id2">2.0.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
 </ul>
 
         </div>
@@ -74,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">MODULO documentation</li>
+      <li class="breadcrumb-item active">MODULO (MODal mULtiscale pOd): Data-Driven Modal Analysis</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -84,23 +88,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="modulo-documentation">
-<h1>MODULO documentation<a class="headerlink" href="#modulo-documentation" title="Link to this heading">¶</a></h1>
+  <section id="modulo-modal-multiscale-pod-data-driven-modal-analysis">
+<h1>MODULO (MODal mULtiscale pOd): Data-Driven Modal Analysis<a class="headerlink" href="#modulo-modal-multiscale-pod-data-driven-modal-analysis" title="Link to this heading">¶</a></h1>
+<p>MODULO (MODal mULtiscale pOd) is a software developed at the von Karman Institute for Fluid Dynamics to perform data-driven modal decompositions.
+Initially focused on the Multiscale Proper Orthogonal Decomposition (mPOD), it has recently been extended to perform also other decompositions that include POD, SPODs, DFT, DMD, mPOD.</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">MODULO: Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#what-are-data-driven-decompositions-some-literature">What are data-driven decompositions? Some literature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="intro.html#previous-versions-of-modulo">Previous versions of MODULO</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">MODULO: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_data.html">Importing data and D matrix preparation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="importing_data.html#modulo_vki.utils.read_db.ReadData._data_processing"><code class="docutils literal notranslate"><span class="pre">_data_processing()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="importing_data.html">Importing data and D matrix preparation</a></li>
 </ul>
 </div>
+</section>
 </section>
 <section id="tutorials-theory">
 <h1>Tutorials &amp; Theory<a class="headerlink" href="#tutorials-theory" title="Link to this heading">¶</a></h1>
@@ -108,16 +110,16 @@
 <p class="caption" role="heading"><span class="caption-text">Core Decompositions</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="decompositions/index.html">Data-Driven Modal Decompositions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/dft/basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/dft/basic_usage.html">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/dft/index.html">Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/dft/theory.html">1. Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/pod/basic_usage.html">POD Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/dft/theory.html">1. Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/pod/basic_usage.html">Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/pod/theory.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/pod/theory.html">Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/mpod/basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/mpod/basic_usage.html">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="decompositions/mpod/theory.html">1. Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="decompositions/mpod/theory.html">1. Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="decompositions/spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
 </ul>
@@ -136,11 +138,15 @@
 </ul>
 </div>
 </section>
-<section id="whats-new">
-<h1>What’s New<a class="headerlink" href="#whats-new" title="Link to this heading">¶</a></h1>
+<section id="change-log">
+<h1>Change Log<a class="headerlink" href="#change-log" title="Link to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="change_log.html">Changelog Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#id1">2.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#id2">2.0.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="change_log.html#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
 </ul>
 </div>
 </section>

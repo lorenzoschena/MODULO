@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog Details &mdash; MODULO 2.1.0 documentation</title>
+  <title>Versions &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="_static/custom.css" />
@@ -29,8 +29,8 @@
 
           
           
-          <a href="index.html" class="icon icon-home">
-            MODULO
+          <a href="index.html">
+            
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -40,7 +40,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">MODULO: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -56,12 +56,12 @@
 <li class="toctree-l1"><a class="reference internal" href="api/pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api/mpod.html">mPOD</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog Details</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">2.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2.0.7</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id1">2.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id2">2.0.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
 </ul>
 
         </div>
@@ -78,7 +78,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Changelog Details</li>
+      <li class="breadcrumb-item active">Versions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/change_log.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -88,16 +88,17 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="changelog-details">
-<h1>Changelog Details<a class="headerlink" href="#changelog-details" title="Link to this heading">¶</a></h1>
+  <section id="versions">
+<h1>Versions<a class="headerlink" href="#versions" title="Link to this heading">¶</a></h1>
+</section>
 <section id="id1">
-<h2>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<h1>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h1>
 <ul class="simple">
 <li><p><cite>mPOD</cite> bug fix: the previous version of the mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.</p></li>
 </ul>
 </section>
 <section id="id2">
-<h2>2.0.7<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<h1>2.0.7<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h1>
 <p>Major updates:</p>
 <p>1. Faster EIG/SVD algorithms, using powerful randomized svd solvers from scikit_learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">TruncatedSVD</a>
 and
@@ -112,6 +113,20 @@ and
 <li><p>Implementation of a formulation for non-uniform meshes, using a weighted matrix for all the relevant inner products. This is currently available only for POD and mPOD which allows for handling data produced from CFD simulation without resampling on a uniform grid (see exercise 5). It can be used both with and without the memory-saving option.</p></li>
 </ol>
 </section>
+<section id="before-modulo-2-0-previous-versions">
+<h1>Before MODULO 2.0: previous versions<a class="headerlink" href="#before-modulo-2-0-previous-versions" title="Link to this heading">¶</a></h1>
+<p>The first version was developed in Matlab and was equipped with a GUI by D. Ninni.
+A minicourse on data-driven decompositions and the usage of MODULO was provided here:</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=ED3x00H4yN4&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=1">https://www.youtube.com/watch?v=ED3x00H4yN4&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=1</a></p>
+<p>Although much of the material covered in these videos is still relevant, a new version of this minicourse is being prepared.
+This is a compressed version of the course “Data-Driven Modal Analysis” that I give as part of the Research Master Program at the von Karman Institute (<a class="reference external" href="https://www.vki.ac.be/index.php/research-master-in-fluid-dynamics">https://www.vki.ac.be/index.php/research-master-in-fluid-dynamics</a>)</p>
+<p>This first MODULO version implemented POD, DFT and mPOD and was already equipped with the first version of the memory-saving feature.
+The GUI was also available as an executable that the user could install without needing a Matlab license.</p>
+<p>This first version is still accessible from the branch “Old_Matlab_Implementation”, but it is no longer maintained.</p>
+<p>The main functions were then imported to Python, and L. Schena developed the first package PyPi.
+A tutorial on how to use that version is given here:</p>
+<p><a class="reference external" href="https://www.youtube.com/watch?v=y2uSvdxAwHk&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=9">https://www.youtube.com/watch?v=y2uSvdxAwHk&amp;list=PLEJZLD0-4PeKW6Ze984q08bNz28GTntkR&amp;index=9</a></p>
+<p>The current architecture of MODULO v2 is built from that version but has been considerably expanded. This first Python version is still accessible from the branch “Old_Python_Implementation” together with the first (unpackaged) versions of the codes. These are still used in some courses for didactic purposes.</p>
 </section>
 
 

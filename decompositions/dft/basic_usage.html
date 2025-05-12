@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. mPOD example &mdash; MODULO 2.1.0 documentation</title>
+  <title>2. Example in MODULO &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -30,8 +30,8 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            MODULO
+          <a href="../../index.html">
+            
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -41,7 +41,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">MODULO: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
@@ -50,16 +50,16 @@
 <p class="caption" role="heading"><span class="caption-text">Core Decompositions</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Data-Driven Modal Decompositions</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. mPOD example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html">Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="theory.html">1. Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pod/basic_usage.html">POD Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="theory.html">1. Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/basic_usage.html">Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pod/theory.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/theory.html">Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mpod/basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mpod/basic_usage.html">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mpod/theory.html">1. Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mpod/theory.html">1. Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
 </ul>
@@ -71,8 +71,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api/pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/mpod.html">mPOD</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Changelog Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#id1">2.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#id2">2.0.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
 </ul>
 
         </div>
@@ -90,7 +94,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Data-Driven Modal Decompositions</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2. </span>mPOD example</li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Example in MODULO</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/decompositions/dft/basic_usage.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,8 +104,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="mpod-example">
-<h1><span class="section-number">2. </span>mPOD example<a class="headerlink" href="#mpod-example" title="Link to this heading">¶</a></h1>
+  <section id="example-in-modulo">
+<h1><span class="section-number">2. </span>Example in MODULO<a class="headerlink" href="#example-in-modulo" title="Link to this heading">¶</a></h1>
 <p>An example of the usage of the mPOD routine, extracted from the <cite>examples</cite> folder is reported below.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki.modulo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuloVKI</span>

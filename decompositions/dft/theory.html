@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Discrete Fourier Transform (DFT) &mdash; MODULO 2.1.0 documentation</title>
+  <title>1. Theory &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -19,7 +19,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="POD Example" href="../pod/basic_usage.html" />
+    <link rel="next" title="Example in MODULO" href="../pod/basic_usage.html" />
     <link rel="prev" title="Discrete Fourier Transform (DFT)" href="index.html" /> 
 </head>
 
@@ -31,8 +31,8 @@
 
           
           
-          <a href="../../index.html" class="icon icon-home">
-            MODULO
+          <a href="../../index.html">
+            
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -42,7 +42,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption" role="heading"><span class="caption-text">Introduction to the project</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../intro.html">MODULO: Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
@@ -51,16 +51,16 @@
 <p class="caption" role="heading"><span class="caption-text">Core Decompositions</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">Data-Driven Modal Decompositions</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html">Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Discrete Fourier Transform (DFT)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pod/basic_usage.html">POD Example</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/basic_usage.html">Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pod/theory.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pod/theory.html">Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mpod/basic_usage.html">2. mPOD example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mpod/basic_usage.html">2. Example in MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../mpod/theory.html">1. Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../mpod/theory.html">1. Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
 </ul>
@@ -72,8 +72,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api/pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/mpod.html">mPOD</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Change Log</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Changelog Details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#id1">2.1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#id2">2.0.7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../change_log.html#before-modulo-2-0-previous-versions">Before MODULO 2.0: previous versions</a></li>
 </ul>
 
         </div>
@@ -92,7 +96,7 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../index.html">Data-Driven Modal Decompositions</a></li>
           <li class="breadcrumb-item"><a href="index.html">Discrete Fourier Transform (DFT)</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Discrete Fourier Transform (DFT)</li>
+      <li class="breadcrumb-item active"><span class="section-number">1. </span>Theory</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/decompositions/dft/theory.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,8 +106,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="discrete-fourier-transform-dft">
-<h1><span class="section-number">1. </span>Discrete Fourier Transform (DFT)<a class="headerlink" href="#discrete-fourier-transform-dft" title="Link to this heading">¶</a></h1>
+  <section id="theory">
+<h1><span class="section-number">1. </span>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
 <p>The DFT is the only not strictly data-driven decomposition present in MODULO. In fact, the temporal basis <span class="math notranslate nohighlight">\(\bm{\psi}_F\)</span> is the Fourier basis, computed <em>a priori</em>.
 This reads:</p>
 <div class="math notranslate nohighlight">
@@ -130,7 +134,7 @@ The term <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{n_t}}\)</sp
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="index.html" class="btn btn-neutral float-left" title="Discrete Fourier Transform (DFT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../pod/basic_usage.html" class="btn btn-neutral float-right" title="POD Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../pod/basic_usage.html" class="btn btn-neutral float-right" title="Example in MODULO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
