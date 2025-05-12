@@ -15,6 +15,7 @@
       <script src="_static/documentation_options.js?v=20623aea"></script>
       <script src="_static/doctools.js?v=9bcbadda"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -45,8 +46,13 @@
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction to MODULO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#key-features-of-modulo">Key features of MODULO</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#collaborate-on-github">Collaborate on GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#collaborate-on-github">Collaborate on GitHub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#report-bugs">Report bugs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ask-for-help">Ask for help</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
@@ -93,13 +99,83 @@
              
   <section id="introduction-to-modulo">
 <h1>Introduction to MODULO<a class="headerlink" href="#introduction-to-modulo" title="Link to this heading">¶</a></h1>
-<p>MODULO (MODal mULtiscale pOd) is a software developed at the von Karman Institute for Fluid Dynamics to perform data-driven modal decompositions.
-Initially focused on the Multiscale Proper Orthogonal Decomposition (mPOD), it has recently been extended to perform also other decompositions that include POD, SPODs, DFT, DMD, mPOD.</p>
+<p>MODULO (MODal mULtiscale pOd) is a Python package developed at the von Karman Institute for Fluid Dynamics to perform a variety of <strong>data-driven modal decompositions</strong>.
+These decompositions seek to approximate a high-dimensional dataset as a linear combination of a small number of coherent building blocks—often called <strong>modes</strong>—which capture the most salient spatio-temporal patterns.</p>
+<p>Each mode (r) is characterized by:</p>
+<ul class="simple">
+<li><p><strong>Spatial structure</strong> (phi_r(x)), which encodes the “shape” of the pattern in space,</p></li>
+<li><p><strong>Temporal structure</strong> (psi_r(t)), which describes how that pattern evolves in time,</p></li>
+<li><p><strong>Amplitude</strong> (sigma_r), which quantifies the energy or variance captured by the mode.</p></li>
+</ul>
+<p>The field of applications ranges from <strong>reduced-order modeling</strong> (ROM) and <strong>flow control</strong> to <strong>filtering</strong>, and <strong>feature extraction</strong>.
+For a comprehensive review of modal methods in fluid dynamics, see Mendez _et al._ (2023) <span id="id1">[<a class="reference internal" href="#id11" title="Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. Measurement Science and Technology, 34:042001, January 2023. doi:10.1088/1361-6501/acaffe.">1</a>]</span>.</p>
+<section id="key-features-of-modulo">
+<h2>Key features of MODULO<a class="headerlink" href="#key-features-of-modulo" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Multiple decomposition algorithms</strong>
+- <strong>POD</strong> (Proper Orthogonal Decomposition) via the snapshot method or SVD
+- <strong>mPOD</strong> (Multiscale POD) for frequency-band separation
+- <strong>SPOD</strong> (Spectral POD)
+- <strong>DFT</strong> (Discrete Fourier Transform)
+- <strong>DMD</strong> (Dynamic Mode Decomposition)
+- <strong>KPOD</strong> (Kernel POD)</p></li>
+<li><p><strong>Memory-efficient implementations</strong>
+- Partition-based loading for very large datasets
+- On-disk correlation matrices (Ninni et _et al._ (2020) <span id="id2">[<a class="reference internal" href="#id7" title="Davide Ninni and Miguel A. Mendez. Modulo: a software for multiscale proper orthogonal decomposition of data. SoftwareX, 12:100622, 12 2020. doi:10.1016/j.softx.2020.100622.">2</a>]</span>)</p></li>
+</ul>
+<div class="docutils container" id="id3">
+<div role="list" class="citation-list">
+<div class="citation" id="id11" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. <em>Measurement Science and Technology</em>, 34:042001, January 2023. <a class="reference external" href="https://doi.org/10.1088/1361-6501/acaffe">doi:10.1088/1361-6501/acaffe</a>.</p>
+</div>
+<div class="citation" id="id7" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Davide Ninni and Miguel A. Mendez. Modulo: a software for multiscale proper orthogonal decomposition of data. <em>SoftwareX</em>, 12:100622, 12 2020. <a class="reference external" href="https://doi.org/10.1016/j.softx.2020.100622">doi:10.1016/j.softx.2020.100622</a>.</p>
+</div>
+</div>
+</div>
+</section>
 <section id="quick-start">
 <h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<p>MODULO is published on PyPI and can be installed with <cite>pip install modulo_vki</cite> (see <a class="reference internal" href="installation.html"><span class="doc">Installation</span></a>). The user is first
+requested to assemble the matrix field to be decomposed, or the folder of the raw files to be imported if she wants to use the
+data loading routines present in the auxialliary code of MODULO. We refer the reader to <a class="reference internal" href="importing_data.html"><span class="doc">Importing data and D matrix preparation</span></a> for an example
+on the usage of these routines, and now we illustrate the case in which the matrix <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> is already available in memory.
+In this case, the decomposition can be carried out as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuloVKI</span> <span class="c1"># this is to create modulo objects</span>
+
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span> <span class="c1"># snapshot matrix containing the data</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">ModuloVKI</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">D</span><span class="p">)</span>
+
+<span class="c1"># Compute the DFT</span>
+<span class="n">Phi_F</span><span class="p">,</span> <span class="n">Psi_F</span><span class="p">,</span> <span class="n">Sorted_Sigmas</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">DFT</span><span class="p">(</span><span class="n">Fs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This output is consistent regardless of the decomposition, e.g. MODULO will always yield the spatial structures first,
+then the temporal ones and lastly the amplitudes of the modes.</p>
 </section>
 <section id="collaborate-on-github">
 <h2>Collaborate on GitHub<a class="headerlink" href="#collaborate-on-github" title="Link to this heading">¶</a></h2>
+<p>We welcome contributions to MODULO.</p>
+<p>It is recommended to perform a shallow clone of the repository to avoid downloading the entire history of the project:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>--depth<span class="w"> </span><span class="m">1</span><span class="w"> </span>https://github.com/mendezVKI/MODULO.git
+</pre></div>
+</div>
+<p>This will download only the latest version of the repository, which is sufficient for contributing to the project, and will save
+you time and disk space.</p>
+<p>To create a new feature, please submit a pull request, specifying the proposed changes and
+providing an example of how to use the new feature (that will be included in the <cite>examples/</cite> folder).</p>
+<p>The pull request will be reviewed by the MODULO team before being merged into the main branch, and your contribution duly acknowledged.</p>
+<section id="report-bugs">
+<h3>Report bugs<a class="headerlink" href="#report-bugs" title="Link to this heading">¶</a></h3>
+<p>If you find a bug, or you encounter unexpected behaviour, please open an issue on the MODULO GitHub repository.</p>
+</section>
+<section id="ask-for-help">
+<h3>Ask for help<a class="headerlink" href="#ask-for-help" title="Link to this heading">¶</a></h3>
+<p>If you have troubles using MODULO, or you need help with a specific decomposition, please open an issue on the MODULO GitHub repository.</p>
+</section>
 </section>
 </section>
 
