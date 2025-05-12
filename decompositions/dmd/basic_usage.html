@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1. Theory &mdash; MODULO 2.1.0 documentation</title>
+  <title>Example in MODULO &mdash; MODULO 2.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
       <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
@@ -19,8 +19,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="2. Example in MODULO" href="basic_usage.html" />
-    <link rel="prev" title="Discrete Fourier Transform (DFT)" href="index.html" /> 
+    <link rel="next" title="Multiscale Proper Orthogonal Decomposition (mPOD)" href="../mpod/index.html" />
+    <link rel="prev" title="Theory" href="theory.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,13 +55,13 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data-Driven Modal Decompositions</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Discrete Fourier Transform (DFT)</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="basic_usage.html">2. Example in MODULO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dft/index.html">Discrete Fourier Transform (DFT)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Dynamic Mode Decomposition (DMD)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="theory.html">Theory</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Example in MODULO</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
@@ -91,10 +91,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html">Discrete Fourier Transform (DFT)</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1. </span>Theory</li>
+          <li class="breadcrumb-item"><a href="index.html">Dynamic Mode Decomposition (DMD)</a></li>
+      <li class="breadcrumb-item active">Example in MODULO</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/decompositions/dft/theory.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/decompositions/dmd/basic_usage.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -102,35 +102,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="theory">
-<h1><span class="section-number">1. </span>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
-<p>The DFT is the only not strictly data-driven decomposition present in MODULO. In fact, the temporal basis <span class="math notranslate nohighlight">\(\mathbf{\psi}_F\)</span> is the Fourier basis, computed <em>a priori</em>.
-This reads:</p>
-<div class="math notranslate nohighlight">
-\[\bm{\psi}_F = \frac{1}{\sqrt{n_t}} \exp{(2 \pi f_r t)\]</div>
-<p>in which <span class="math notranslate nohighlight">\(f_r=r\Delta f\)</span> is the frequency of the <span class="math notranslate nohighlight">\(r\)</span>-th Fourier mode, <span class="math notranslate nohighlight">\(\Delta f=f_s/n_t\)</span> is the frequency resolution, and <span class="math notranslate nohighlight">\(n_t\)</span> is the number of time samples.
-The term <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{n_t}}\)</span> is a normalization factor, which ensures that the Fourier basis is orthonormal, e.g. <span class="math notranslate nohighlight">\(\|\mathbf{\psi}_F\|^2=1\)</span>.</p>
-<p>Considering the DFT of the signal at one specific location <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>, the Fourier coefficients are computed as:</p>
-<div class="math notranslate nohighlight">
-\[\bm{C}_F(\bm{x}_i) = \frac{1}{\sqrt{n_t}} \sum_{t=0}^{n_t-1} \bm{u}(\bm{x}_i,t) \exp{(-2 \pi f_r t)}\]</div>
-<p>that effectively projects the signal onto the Fourier basis. For each of these projections, one can compute the norm as:</p>
-<div class="math notranslate nohighlight">
-\[\sigma_F = \|\bm{C}_F\|\]</div>
-<p>that leads to the normalized projected fields:</p>
-<div class="math notranslate nohighlight">
-\[\bm{\Phi}_F = \frac{\bm{C}_F}{\sigma_F}\;,\]</div>
-<p>that are the spatial structure of the DFT. This completes the DFT decomposition, presented here as a matrix factorization:</p>
-<div class="math notranslate nohighlight">
-\[\mathbf{D} = \bm{\Phi}_F \bm{\Sigma}_F \bm{\Psi}_F^T\;,\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{\Sigma}_F\)</span> is a diagonal matrix containing the modal amplitudes <span class="math notranslate nohighlight">\(\sigma_F\)</span>.</p>
+  <section id="example-in-modulo">
+<h1>Example in MODULO<a class="headerlink" href="#example-in-modulo" title="Link to this heading">¶</a></h1>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># --- Initialize MODULO object</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">ModuloVKI</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">nan_to_num</span><span class="p">(</span><span class="n">D</span><span class="p">))</span>
+<span class="c1"># Compute the POD using PIP&#39;s method</span>
+<span class="n">Phi_D</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">freqs</span><span class="p">,</span> <span class="n">a0s</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">DMD</span><span class="p">(</span><span class="n">save_dmd</span><span class="p">,</span> <span class="n">F_S</span><span class="o">=</span><span class="n">F_S</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">DMD</span></code> module returns the spatial structures <span class="math notranslate nohighlight">\(\mathbf{\Phi}_D\)</span>, the complex
+eigenvalues <span class="math notranslate nohighlight">\(\lambda_r\)</span> of the reduced-order propagator <span class="math notranslate nohighlight">\(\tilde{\mathbf{S}}\)</span>,
+the frequency associated with each DMD mode, and their amplitudes <span class="math notranslate nohighlight">\(\mathbf{a}_0\)</span>.</p>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="index.html" class="btn btn-neutral float-left" title="Discrete Fourier Transform (DFT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="basic_usage.html" class="btn btn-neutral float-right" title="2. Example in MODULO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="theory.html" class="btn btn-neutral float-left" title="Theory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../mpod/index.html" class="btn btn-neutral float-right" title="Multiscale Proper Orthogonal Decomposition (mPOD)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
