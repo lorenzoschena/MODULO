@@ -73,6 +73,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api/pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/mpod.html">mPOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/dmd.html">DMD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/spod.html">SPOD</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/kpod.html">kPOD</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Changelog</span></p>
 <ul>
@@ -118,11 +120,11 @@ between snapshots <span class="math notranslate nohighlight">\(\mathbf{d}_i \in 
 <p>In the following, we use Radial Basis Function (RBFs) as kernel function. We compute the inverse length-scale
 of the RBF as:</p>
 <div class="math notranslate nohighlight">
-\[\gamma = - \frac{\log{k_m}}{M_{ij}\]</div>
+\[\gamma = - \frac{\log{k_m}}{M_{ij}}\]</div>
 <p>where <span class="math notranslate nohighlight">\(k_m\)</span> is a minimum value for the kernelized correlation. This leads to the kernelized expression of
 the correlation matrix as:</p>
 <div class="math notranslate nohighlight">
-\[\mathbf{K}_\xi = \exp{(-\gamma \| \mathbf{d}_i - \mathbf{d}_j \|^2) \;.\]</div>
+\[\mathbf{K}_\xi = \exp{(-\gamma \| \mathbf{d}_i - \mathbf{d}_j \|^2)} \;.\]</div>
 <p>From this point onward, the procedure is the one of a standard POD: the temporal modes <span class="math notranslate nohighlight">\(\psi^\xi_r\)</span> are
 eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{K}^\xi\)</span> (that now is a nonlinear manifold), the amplitudes are
 <span class="math notranslate nohighlight">\(sigma_r^\xi = \sqrt{\lambda^xi}\)</span>, and the spatial modes <span class="math notranslate nohighlight">\(\phi^\xi_r\)</span> are obtained via projection.</p>

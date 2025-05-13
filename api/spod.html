@@ -17,7 +17,9 @@
       <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="kPOD" href="kpod.html" />
+    <link rel="prev" title="DMD" href="dmd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,12 +62,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../decompositions/spod/index.html">Spectral Proper Orthogonal Decomposition (SPOD)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readdata.html">Read Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dft.html">DFT</a></li>
 <li class="toctree-l1"><a class="reference internal" href="pod.html">POD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mpod.html">mPOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dmd.html">DMD</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SPOD</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#modulo_vki.modulo.ModuloVKI.SPOD"><code class="docutils literal notranslate"><span class="pre">SPOD()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="kpod.html">kPOD</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Changelog</span></p>
 <ul>
@@ -98,12 +105,53 @@
              
   <section id="spod">
 <h1>SPOD<a class="headerlink" href="#spod" title="Link to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="modulo_vki.modulo.ModuloVKI.SPOD">
+<span class="sig-prename descclassname"><span class="pre">modulo_vki.modulo.ModuloVKI.</span></span><span class="sig-name descname"><span class="pre">SPOD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">F_S</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><span class="pre">float</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_Modes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SAVE_SPOD</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulo_vki.modulo.ModuloVKI.SPOD" title="Link to this definition">¶</a></dt>
+<dd><p>Unified Spectral POD interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<em>{'sieber'</em><em>, </em><em>'towne'}</em>) – Which SPOD algorithm to run.</p></li>
+<li><p><strong>F_S</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Sampling frequency [Hz].</p></li>
+<li><p><strong>n_Modes</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Number of modes to compute, by default 10.</p></li>
+<li><p><strong>SAVE_SPOD</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to save outputs, by default True.</p></li>
+<li><p><strong>**kwargs</strong> – <dl class="simple">
+<dt>For mode=’sieber’, accepts:</dt><dd><ul>
+<li><p>N_O (int): semi-order of the diagonal filter</p></li>
+<li><p>f_c (float): cutoff frequency</p></li>
+</ul>
+</dd>
+<dt>For mode=’towne’, accepts:</dt><dd><ul>
+<li><p>L_B (int): block length</p></li>
+<li><p>O_B (int): block overlap</p></li>
+<li><p>n_processes (int): number of parallel workers</p></li>
+</ul>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>Phi</strong> (<em>ndarray</em>) – Spatial modes.</p></li>
+<li><p><strong>Sigma</strong> (<em>ndarray</em>) – Modal amplitudes.</p></li>
+<li><p><strong>Aux</strong> (<em>tuple</em>) – Additional outputs.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dmd.html" class="btn btn-neutral float-left" title="DMD" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kpod.html" class="btn btn-neutral float-right" title="kPOD" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
