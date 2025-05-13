@@ -57,8 +57,8 @@
 <li class="toctree-l1"><a class="reference internal" href="decompositions/pod/index.html">Proper Orthogonal Decomposition (POD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decompositions/dmd/index.html">Dynamic Mode Decomposition (DMD)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="decompositions/mpod/index.html">Multiscale Proper Orthogonal Decomposition (mPOD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decompositions/kpod/index.html">Kernel Proper Orthogonal Decomposition (K-POD)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="decompositions/spod/index.html">Spectral Proper Orthogonal Decomposition</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/kpod/index.html">Kernel Proper Orthogonal Decomposition (KPOD)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="decompositions/spod/index.html">Spectral Proper Orthogonal Decomposition (SPOD)</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
 <ul>
@@ -108,6 +108,8 @@
 <h2>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><cite>mPOD</cite> bug fix: the previous version of the mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.</p></li>
+<li><p>CSD - SPOD can now be parallelized, leveraging <cite>joblib</cite>. The user needs just to pass the argument <cite>n_processes</cite> for the computation to be
+split between different workers.</p></li>
 </ul>
 </section>
 <section id="id2">
@@ -116,7 +118,7 @@
 <p>1. Faster EIG/SVD algorithms, using powerful randomized svd solvers from scikit_learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">TruncatedSVD</a>
 and
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.extmath.randomized_svd.html">randomized_svd</a>) . It is now possible to select various options as “eig_solver” and “svd_solver”, offering different trade-offs in terms of accuracy vs computational time.</p>
-<ol class="arabic simple" start="2">
+<ol class="arabic simple">
 <li><p>In addition to the traditional POD computation using the K matrix (Sirovinch’s method), it is now possible to compute the POD directly via SVD using any of the four “svd_solver” options. This is generally faster but requires more memory.</p></li>
 <li><p>Much faster subscale estimators for the mPOD: the previous version used the rank of the correlation matrix in each scale to define the number of modes to be computed in each portion of the splitting vector. This is computationally very demanding. The estimation has been replaced by a frequency-based threshold (i.e. based on the frequency bins within each portion) since one can show that the frequency-based estimator is always more “conservative” than the rank-based estimator. Combining this estimator with a stochastic solver for eigendecomposition at each scale makes the mPOD much, much faster than before!</p></li>
 <li><p>Major improvement on the memory saving option: the previous version of modulo always required in input the matrix D. Then, if the memory saving option was active, the matrix was partitioned and stored locally to free the RAM before computing the correlation matrix (see this tutorial by D. Ninni <a class="reference external" href="https://www.youtube.com/watch?v=LclxO1WTuao">https://www.youtube.com/watch?v=LclxO1WTuao</a>). In the new version, it is possible to initialize a modulo object and create the data partitions  <em>without</em> loading the matrix D (see exercise 4 in the examples). This means that the only bottle neck is provided by the number of snapshots…!!</p></li>
