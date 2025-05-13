@@ -179,6 +179,13 @@ and the full spatio‐temporal structures become</p>
                                         <span class="n">n_Modes</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># number of modes PER FREQUENCY</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><cite>MODULO v. 2.1.0</cite> includes some parallelization capabilities for the CSD SPOD. These take effect in two
+steps: (1) when segmenting and computing the FFT on each block of <span class="math notranslate nohighlight">\(\hat{D}(f)\)</span>; and (2) when
+computing the POD <cite>n_modes</cite> for each frequency. This enables the user for a direct control over the threads
+leveraged in the computation, that otherwise are left up to the numpy vectorization routines.</p>
+</div>
 </section>
 </section>
 
