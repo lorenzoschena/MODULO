@@ -29,7 +29,7 @@
 
           
           
-          <a href="../../index.html">
+          <a href="../../intro.html">
             
               <img src="../../_static/modulo_logo.png" class="logo" alt="Logo"/>
           </a>
@@ -43,7 +43,6 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../intro.html">Introduction to MODULO</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data pre-processing</span></p>
@@ -70,9 +69,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../api/spod.html">SPOD</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../api/kpod.html">kPOD</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Changelog</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../change_log.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/get_code.html">Base contributions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing/testing.html">Development and Testing</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References &amp; Acknowledgements</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../refs_and_ack/refs.html">Useful References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../refs_and_ack/ack.html">Ackowledgements</a></li>
 </ul>
 
         </div>
@@ -81,14 +86,14 @@
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../../index.html">MODULO</a>
+          <a href="../../intro.html">MODULO</a>
       </nav>
 
       <div class="wy-nav-content">
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li><a href="../../intro.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Theory</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/decompositions/dmd/theory.rst.txt" rel="nofollow"> View page source</a>
@@ -102,10 +107,10 @@
   <section id="theory">
 <h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
 <p>The DMD seeks to overcome the <cite>spectral-mixing</cite> induced by the POD compression, while simultaneously avoid _windowing_ problems
-caused by the dependency of the DFT on the fundamental tone of the data to be decomposed. The main idea introduced by Schmid (2010) <span id="id1">[<a class="reference internal" href="../../intro.html#id9" title="Peter J. Schmid. Dynamic mode decomposition of numerical and experimental data. Journal of Fluid Mechanics, 656:5–28, 2010. doi:10.1017/S0022112010001217.">3</a>]</span>,
+caused by the dependency of the DFT on the fundamental tone of the data to be decomposed. The main idea introduced by Schmid (2010) <span id="id1">[]</span>,
 is to fit a linear system onto a reduced POD projection of the dataset.</p>
-<p>The algorithm we implement in MODULO is the one proposed by Tu et al. (2013) <span id="id2">[<a class="reference internal" href="../../intro.html#id18" title="Jonathan H Tu. Dynamic mode decomposition: Theory and applications. PhD thesis, Princeton University, 2013.">4</a>]</span>, and a more robust theoretical formulation can also be found
-in Mendez (2021) <span id="id3">[<a class="reference internal" href="../../intro.html#id19" title="Miguel Alfonso Mendez. Statistical treatment, fourier and modal decomposition. arXiv preprint arXiv:2201.03847, 2022.">5</a>]</span>.</p>
+<p>The algorithm we implement in MODULO is the one proposed by Tu et al. (2013) <span id="id2">[]</span>, and a more robust theoretical formulation can also be found
+in Mendez (2021) <span id="id3">[]</span>.</p>
 <p>This method creates two portions of the snapshot matrix <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> that differ of one step in time, that is:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{D}_1 = [\mathbf{d}_1, \dots, \mathbf{d}_{n_t - 1}] \in \mathbb{R}^{n_S \times n_t - 1} \;,\]</div>
