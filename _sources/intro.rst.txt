@@ -24,7 +24,7 @@ Initially focused on the Multiscale Proper Orthogonal Decomposition (mPOD), it h
 Data-Driven Modal Decompositions
 ---------------------------------
 
-All modal decompositions are implemented in MODULO as matrix factorization of the snapshot matrix :math:`D(\mathbf{x}, t) \in \mathbb{R}^{n_S \times n_t}`.
+All modal decompositions are implemented in MODULO :cite:`Poletti2024` as matrix factorization of the snapshot matrix :math:`D(\mathbf{x}, t) \in \mathbb{R}^{n_S \times n_t}`.
 Each entry of the snapshot matrix is a flattened realization of the data, regardless of the data dimensionality (2D, 3D). Thus, this decomposition
 reads 
 
@@ -37,7 +37,7 @@ respectively, and :math:`\mathbf{\Sigma} \in \mathbb{R}^{r \times r}` is a diago
 
 Each mode :math:`r`` is characterized by:
 
-- **Spatial structure** :math:`\mathbf{\phi}_r`, which encodes the the pattern in space,  
+- **Spatial structure** :math:`\mathbf{\phi}_r`, which encodes the pattern in space,
 - **Temporal structure** :math:`\mathbf{\psi}_r`, which describes how that pattern evolves in time,  
 - **Amplitude** :math:`\sigma_r`, which quantifies the modal amplitude, e.g. energy or variance captured by the mode.  
 
@@ -73,10 +73,10 @@ Key features of MODULO
   - **DMD** (Dynamic Mode Decomposition)  
   - **KPOD** (Kernel POD)  
 
-- **Memory‐saving implementations** :cite:`ninni_modulo_2020`:
+- **Memory‐saving implementations** (Ninni et al., (2020) :cite:`ninni_modulo_2020`):
 
   - Partition‐based loading for very large datasets  
-  - On‐disk correlation matrices (Ninni et al., 2020) :cite:`ninni_modulo_2020`  
+  - On‐disk correlation matrices
   
 
 .. toctree::
@@ -111,8 +111,9 @@ In this case, the decomposition can be carried out as:
     # Compute the DFT
     Phi_F, Psi_F, Sorted_Sigmas = m.DFT(Fs)
 
-This output is consistent regardless of the decomposition, e.g. MODULO will always yield the spatial structures first,
-then the temporal ones and lastly the amplitudes of the modes.
+This output is consistent regardless of the decomposition; MODULO will always yield the spatial structures first.
+
+.. then the temporal ones and lastly the amplitudes of the modes.
 
 .. toctree::
    :maxdepth: 1
@@ -120,8 +121,6 @@ then the temporal ones and lastly the amplitudes of the modes.
 
    contributing/get_code
    contributing/testing 
-
-The version changes are available here: 
 
 .. toctree::
    :maxdepth: 1

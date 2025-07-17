@@ -29,13 +29,14 @@ the correlation matrix as:
 
 From this point onward, the procedure is the one of a standard POD: the temporal modes :math:`\psi^\xi_r` are 
 eigenvectors of :math:`\mathbf{K}^\xi` (that now is a nonlinear manifold), the amplitudes are 
-:math:`sigma_r^\xi = \sqrt{\lambda^xi}`, and the spatial modes :math:`\phi^\xi_r` are obtained via projection. 
+:math:`\sigma_r^\xi = \sqrt{\lambda^xi}`, and the spatial modes :math:`\phi^\xi_r` are obtained via projection.
 
 Example with MODULO 
 --------------------
 The ``kPOD`` is called in MODULO as:
 
 .. code-block::
+
     from modulo_vki import ModuloVKI
 
     # --- Initialize MODULO object
@@ -44,7 +45,7 @@ The ``kPOD`` is called in MODULO as:
     Phi_kPOD, Psi_kPOD, Sigma_kPOD,K_zeta = m.kPOD(M_DIST=M_DIST,k_m=k_m,
     cent=True, K_out=True)
 
-where ``M_DIST`` defines the snapshot indexes of which to compute the distance, ``k_m`` is minimum kernelized 
+where ``M_DIST`` defines the snapshot indexes of which to compute the distance, ``k_m`` is the minimum kernelized
 correlation threshold described above, ``cent=True`` performs centering of :math:`\mathbf{K}^\xi` and ``K_out=True``
 returns the kernelized correlation matrix. 
 

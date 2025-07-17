@@ -125,8 +125,8 @@
 <h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
 <p>The SPOD aims at identifying the coherent modes of a stochastic process at specific frequencies. In the literature,
 there are two spectral paths to achieve this result: (1) low-pass filtering the covariance matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span>
-along the diagonals (<span id="id1">[]</span>); or (2) by solving an Fredholm eigenvalue problem for
-the cross-spectral density matrix at each frequency bin (<span id="id2">[]</span>).</p>
+along the diagonals (<span id="id1">[<a class="reference internal" href="../../refs_and_ack/refs.html#id4" title="Moritz Sieber, C. Oliver Paschereit, and Kilian Oberleithner. Spectral proper orthogonal decomposition. Journal of Fluid Mechanics, 792:798–828, 2016. doi:10.1017/jfm.2016.103.">7</a>]</span>); or (2) by solving an Fredholm eigenvalue problem for
+the cross-spectral density matrix at each frequency bin (<span id="id2">[<a class="reference internal" href="../../refs_and_ack/refs.html#id9" title="Aaron Towne, Oliver T. Schmidt, and Tim Colonius. Spectral proper orthogonal decomposition and its relationship to dynamic mode decomposition and resolvent analysis. Journal of Fluid Mechanics, 847:821–867, 2018. doi:10.1017/jfm.2018.283.">8</a>]</span>).</p>
 <p>Both options are available in MODULO, and are briefly reviewed below.</p>
 <section id="filtered-covariance-spod-sieber-et-al">
 <h3>Filtered-Covariance SPOD (Sieber et al.)<a class="headerlink" href="#filtered-covariance-spod-sieber-et-al" title="Link to this heading">¶</a></h3>
@@ -134,8 +134,8 @@ the cross-spectral density matrix at each frequency bin (<span id="id2">[]</span
 To this end, the (temporal) correlation matrix <span class="math notranslate nohighlight">\(\mathbf{K}\)</span> is low-pass filtered along the diagonals. This reads:</p>
 <div class="math notranslate nohighlight">
 \[K_{i, j}^f = \sum_{k=-{N_f}}^{N_f} g_k \; K_{i+k, j+k}\]</div>
-<p>where <span class="math notranslate nohighlight">\(g_k\)</span> is a symmetric FIR filter with coefficients of length <span class="math notranslate nohighlight">\(2N_f + 1\)</span>. Obtained the filtered
-:math:<a href="#id3"><span class="problematic" id="id4">`</span></a>mathbf{K}^f`m the further procedure of the SPOD is the same as for the classical POD.</p>
+<p>where <span class="math notranslate nohighlight">\(g_k\)</span> is a symmetric FIR filter with coefficients of length <span class="math notranslate nohighlight">\(2N_f + 1\)</span>. Once the filtered correlation
+matrix <span class="math notranslate nohighlight">\(\mathbf{K}^f\)</span> is botained, the procedure of the SPOD is the same as for the classical POD.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Note that by default the spatial modes obtained with this procedure <span class="math notranslate nohighlight">\(\mathbf{\Phi}(x)\)</span> are no longer orthogonal.
@@ -149,12 +149,10 @@ in the <code class="docutils literal notranslate"><span class="pre">Spatial_basi
 one needs to define the appropriate inner product. Following the original derivation, this reads:</p>
 <div class="math notranslate nohighlight">
 \[\langle \mathbf{u}, \mathbf{v} \rangle_{x, t} = \int_{-\infty}^\infty \int_\Omega \mathbf{v}^*(\mathbf{x}, t) \mathbf{u}(\mathbf{x}, t) \; d\mathbf{x}dt.\]</div>
-<dl>
-<dt>For each frequency <span class="math notranslate nohighlight">\(f\)</span>, we compute the cross‐spectral density by sliding a DFT window over the lags:</dt><dd><div class="math notranslate nohighlight">
+<p>For each frequency <span class="math notranslate nohighlight">\(f\)</span>, we compute the cross‐spectral density by sliding a DFT window over the lags:</p>
+<div class="math notranslate nohighlight">
 \[S_{i,j}(f)= \sum_{m=-M}^{M}
   K_{\,i+m,\;j+m}\,\exp\bigl(-\,\mathrm{i}2\pi f\,m\Delta t\bigr)\quad\Delta t = 1/F_S.\]</div>
-</dd>
-</dl>
 <p>The deterministic functions <span class="math notranslate nohighlight">\(\mathbf{\phi}(\mathbf{x},t)\)</span> are then obtained by solving, at each frequency <span class="math notranslate nohighlight">\(f\)</span>,
 the Hermitian Fredholm eigenproblem:</p>
 <div class="math notranslate nohighlight">

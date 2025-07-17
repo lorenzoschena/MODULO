@@ -128,7 +128,7 @@ Initially focused on the Multiscale Proper Orthogonal Decomposition (mPOD), it h
 </div>
 <section id="data-driven-modal-decompositions">
 <h2>Data-Driven Modal Decompositions<a class="headerlink" href="#data-driven-modal-decompositions" title="Link to this heading">¶</a></h2>
-<p>All modal decompositions are implemented in MODULO as matrix factorization of the snapshot matrix <span class="math notranslate nohighlight">\(D(\mathbf{x}, t) \in \mathbb{R}^{n_S \times n_t}\)</span>.
+<p>All modal decompositions are implemented in MODULO <span id="id1">[<a class="reference internal" href="refs_and_ack/refs.html#id3" title="Romain Poletti, L Schena, D Ninni, and Miguel Alfonso Mendez. Modulo: a python toolbox for data-driven modal decomposition. Journal of Open Source Software, 9(102):6753, 2024.">1</a>]</span> as matrix factorization of the snapshot matrix <span class="math notranslate nohighlight">\(D(\mathbf{x}, t) \in \mathbb{R}^{n_S \times n_t}\)</span>.
 Each entry of the snapshot matrix is a flattened realization of the data, regardless of the data dimensionality (2D, 3D). Thus, this decomposition
 reads</p>
 <div class="math notranslate nohighlight">
@@ -137,14 +137,14 @@ reads</p>
 respectively, and <span class="math notranslate nohighlight">\(\mathbf{\Sigma} \in \mathbb{R}^{r \times r}\)</span> is a diagonal matrix containing the modal energy associated with each mode.</p>
 <p>Each mode <span class="math notranslate nohighlight">\(r`\)</span> is characterized by:</p>
 <ul class="simple">
-<li><p><strong>Spatial structure</strong> <span class="math notranslate nohighlight">\(\mathbf{\phi}_r\)</span>, which encodes the the pattern in space,</p></li>
+<li><p><strong>Spatial structure</strong> <span class="math notranslate nohighlight">\(\mathbf{\phi}_r\)</span>, which encodes the pattern in space,</p></li>
 <li><p><strong>Temporal structure</strong> <span class="math notranslate nohighlight">\(\mathbf{\psi}_r\)</span>, which describes how that pattern evolves in time,</p></li>
 <li><p><strong>Amplitude</strong> <span class="math notranslate nohighlight">\(\sigma_r\)</span>, which quantifies the modal amplitude, e.g. energy or variance captured by the mode.</p></li>
 </ul>
 <p>The reminder of this section overviews the salient theoretical aspects of the implement modal decompositions, and the corresponding
 implementation in MODULO. The following decompositions are available:</p>
 <p>The field of applications ranges from <strong>reduced-order modeling</strong> (ROM) and <strong>flow control</strong> to <strong>filtering</strong>, and <strong>feature extraction</strong>.
-For a comprehensive review of modal methods in fluid dynamics, see Mendez et al. (2023) <span id="id1">[]</span>.</p>
+For a comprehensive review of modal methods in fluid dynamics, see Mendez et al. (2023) <span id="id2">[<a class="reference internal" href="refs_and_ack/refs.html#id10" title="Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. Measurement Science and Technology, 34:042001, January 2023. doi:10.1088/1361-6501/acaffe.">2</a>]</span>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Data-Driven Modal Decompositions</span></p>
 <ul>
@@ -170,10 +170,10 @@ For a comprehensive review of modal methods in fluid dynamics, see Mendez et al.
 <li><p><strong>KPOD</strong> (Kernel POD)</p></li>
 </ul>
 </li>
-<li><p><strong>Memory‐saving implementations</strong> <span id="id2">[]</span>:</p>
+<li><p><strong>Memory‐saving implementations</strong> (Ninni et al., (2020) <span id="id3">[<a class="reference internal" href="refs_and_ack/refs.html#id6" title="Davide Ninni and Miguel A. Mendez. Modulo: a software for multiscale proper orthogonal decomposition of data. SoftwareX, 12:100622, 12 2020. doi:10.1016/j.softx.2020.100622.">3</a>]</span>):</p>
 <ul>
 <li><p>Partition‐based loading for very large datasets</p></li>
-<li><p>On‐disk correlation matrices (Ninni et al., 2020) <span id="id3">[]</span></p></li>
+<li><p>On‐disk correlation matrices</p></li>
 </ul>
 </li>
 </ul>
@@ -207,8 +207,7 @@ In this case, the decomposition can be carried out as:</p>
 <span class="n">Phi_F</span><span class="p">,</span> <span class="n">Psi_F</span><span class="p">,</span> <span class="n">Sorted_Sigmas</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">DFT</span><span class="p">(</span><span class="n">Fs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>This output is consistent regardless of the decomposition, e.g. MODULO will always yield the spatial structures first,
-then the temporal ones and lastly the amplitudes of the modes.</p>
+<p>This output is consistent regardless of the decomposition; MODULO will always yield the spatial structures first.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul>
@@ -216,7 +215,6 @@ then the temporal ones and lastly the amplitudes of the modes.</p>
 <li class="toctree-l1"><a class="reference internal" href="contributing/testing.html">Development and Testing</a></li>
 </ul>
 </div>
-<p>The version changes are available here:</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Changelog</span></p>
 <ul>

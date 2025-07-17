@@ -121,7 +121,7 @@
 <h2>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h2>
 <p>The Kernel POD is a nonlinear variant of the POD. It seeks to capture nonlinear correlations between snapshots
 via their embedding into a higher dimensional feature space (that we shall denote as <span class="math notranslate nohighlight">\(xi\)</span>), defined by a
-kernel function, and performs the POD there <span id="id1">[]</span>.</p>
+kernel function, and performs the POD there <span id="id1">[<a class="reference internal" href="../../refs_and_ack/refs.html#id10" title="Miguel A. Mendez. Linear and nonlinear dimensionality reduction from fluid mechanics to machine learning. Measurement Science and Technology, 34:042001, January 2023. doi:10.1088/1361-6501/acaffe.">2</a>]</span>.</p>
 <p>Thus, the main step is the computation of this kernel function. To this end, we compute the euclidean distance
 between snapshots <span class="math notranslate nohighlight">\(\mathbf{d}_i \in \mathbb{R}^{n_S}\)</span> as</p>
 <div class="math notranslate nohighlight">
@@ -136,12 +136,21 @@ the correlation matrix as:</p>
 \[\mathbf{K}_\xi = \exp{(-\gamma \| \mathbf{d}_i - \mathbf{d}_j \|^2)} \;.\]</div>
 <p>From this point onward, the procedure is the one of a standard POD: the temporal modes <span class="math notranslate nohighlight">\(\psi^\xi_r\)</span> are
 eigenvectors of <span class="math notranslate nohighlight">\(\mathbf{K}^\xi\)</span> (that now is a nonlinear manifold), the amplitudes are
-<span class="math notranslate nohighlight">\(sigma_r^\xi = \sqrt{\lambda^xi}\)</span>, and the spatial modes <span class="math notranslate nohighlight">\(\phi^\xi_r\)</span> are obtained via projection.</p>
+<span class="math notranslate nohighlight">\(\sigma_r^\xi = \sqrt{\lambda^xi}\)</span>, and the spatial modes <span class="math notranslate nohighlight">\(\phi^\xi_r\)</span> are obtained via projection.</p>
 </section>
 <section id="example-with-modulo">
 <h2>Example with MODULO<a class="headerlink" href="#example-with-modulo" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">kPOD</span></code> is called in MODULO as:</p>
-<p>where <code class="docutils literal notranslate"><span class="pre">M_DIST</span></code> defines the snapshot indexes of which to compute the distance, <code class="docutils literal notranslate"><span class="pre">k_m</span></code> is minimum kernelized
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">modulo_vki</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuloVKI</span>
+
+<span class="c1"># --- Initialize MODULO object</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">ModuloVKI</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">D</span><span class="p">,</span><span class="n">svd_solver</span><span class="o">=</span><span class="s1">&#39;svd_scipy_sparse&#39;</span><span class="p">)</span>
+<span class="n">M_DIST</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">19</span><span class="p">]</span>
+<span class="n">Phi_kPOD</span><span class="p">,</span> <span class="n">Psi_kPOD</span><span class="p">,</span> <span class="n">Sigma_kPOD</span><span class="p">,</span><span class="n">K_zeta</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">kPOD</span><span class="p">(</span><span class="n">M_DIST</span><span class="o">=</span><span class="n">M_DIST</span><span class="p">,</span><span class="n">k_m</span><span class="o">=</span><span class="n">k_m</span><span class="p">,</span>
+<span class="n">cent</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">K_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">M_DIST</span></code> defines the snapshot indexes of which to compute the distance, <code class="docutils literal notranslate"><span class="pre">k_m</span></code> is the minimum kernelized
 correlation threshold described above, <code class="docutils literal notranslate"><span class="pre">cent=True</span></code> performs centering of <span class="math notranslate nohighlight">\(\mathbf{K}^\xi\)</span> and <code class="docutils literal notranslate"><span class="pre">K_out=True</span></code>
 returns the kernelized correlation matrix.</p>
 <div class="admonition note">

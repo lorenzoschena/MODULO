@@ -4,9 +4,18 @@ Versions
 
 2.1.0
 ------
-- `mPOD` bug fix: the previous version of the mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.
-- CSD - SPOD can now be parallelized, leveraging `joblib`. The user needs just to pass the argument `n_processes` for the computation to be
-  split between different workers.
+1. mPOD bug fix: the previous version of mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.
+
+2. SPOD parallelisation: CSD - SPOD can now be parallelized, leveraging `joblib`. The user needs just to pass the argument `n_processes` for the computation to be
+   split between different workers.
+   
+3. Simplified decomposition interface: the interface of the decomposition methods has been simplified to improve user experience. 
+
+4. Enhanced POD selection: the POD function has been redesigned, allowing users to easily choose between different POD methods.  
+   
+5. Improved computational efficiency: the code of the decomposition functions has been optimised, resulting in reduced computation time. mPOD now includes two additional optional arguments to enable faster filtering and to avoid recomputing the Sigmas after QR polishing. 
+	
+6. Extended documentation: the documentation has been significantly enriched, now including theoretical foundations for all the supported modal decomposition techniques. 
 
 2.0.7
 ------

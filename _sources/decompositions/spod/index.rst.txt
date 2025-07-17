@@ -21,8 +21,8 @@ To this end, the (temporal) correlation matrix :math:`\mathbf{K}` is low-pass fi
     
     K_{i, j}^f = \sum_{k=-{N_f}}^{N_f} g_k \; K_{i+k, j+k} 
 
-where :math:`g_k` is a symmetric FIR filter with coefficients of length :math:`2N_f + 1`. Obtained the filtered
-:math:`\mathbf{K}^f`m the further procedure of the SPOD is the same as for the classical POD.
+where :math:`g_k` is a symmetric FIR filter with coefficients of length :math:`2N_f + 1`. Once the filtered correlation
+matrix :math:`\mathbf{K}^f` is botained, the procedure of the SPOD is the same as for the classical POD.
 
 .. note::
 
@@ -40,7 +40,8 @@ one needs to define the appropriate inner product. Following the original deriva
     \langle \mathbf{u}, \mathbf{v} \rangle_{x, t} = \int_{-\infty}^\infty \int_\Omega \mathbf{v}^*(\mathbf{x}, t) \mathbf{u}(\mathbf{x}, t) \; d\mathbf{x}dt.
 
 For each frequency :math:`f`, we compute the cross‐spectral density by sliding a DFT window over the lags:
-   .. math::
+
+.. math::
       S_{i,j}(f)= \sum_{m=-M}^{M}
         K_{\,i+m,\;j+m}\,\exp\bigl(-\,\mathrm{i}2\pi f\,m\Delta t\bigr)\quad\Delta t = 1/F_S.
 

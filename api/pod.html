@@ -116,7 +116,7 @@
 <h1>POD<a class="headerlink" href="#pod" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="modulo_vki.modulo.ModuloVKI.POD">
-<span class="sig-prename descclassname"><span class="pre">modulo_vki.modulo.ModuloVKI.</span></span><span class="sig-name descname"><span class="pre">POD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SAVE_T_POD</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'K'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulo_vki.modulo.ModuloVKI.POD" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">modulo_vki.modulo.ModuloVKI.</span></span><span class="sig-name descname"><span class="pre">POD</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">SAVE_T_POD</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><span class="pre">bool</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'K'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modulo_vki.modulo.ModuloVKI.POD" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the Proper Orthogonal Decomposition (POD) of a dataset.</p>
 <p>The POD is computed using the snapshot approach, working on the
 temporal correlation matrix.  The eigenvalue solver for this
@@ -133,9 +133,9 @@ correlation matrix.
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
+<li><p><strong>Phi_P</strong> (<em>numpy.ndarray</em>) – POD temporal modes.</p></li>
 <li><p><strong>Psi_P</strong> (<em>numpy.ndarray</em>) – POD spatial modes.</p></li>
 <li><p><strong>Sigma_P</strong> (<em>numpy.ndarray</em>) – POD singular values (eigenvalues are Sigma_P**2).</p></li>
-<li><p><strong>Phi_P</strong> (<em>numpy.ndarray</em>) – POD temporal modes.</p></li>
 </ul>
 </p>
 </dd>
