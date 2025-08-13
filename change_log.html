@@ -78,8 +78,9 @@
 <p class="caption" role="heading"><span class="caption-text">Changelog</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Versions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">2.1.0</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2.0.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">2.1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.0.7</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#modulo-2-0">MODULO &lt; 2.0</a></li>
 </ul>
 </li>
@@ -117,7 +118,13 @@
   <section id="versions">
 <h1>Versions<a class="headerlink" href="#versions" title="Link to this heading">¶</a></h1>
 <section id="id1">
-<h2>2.1.0<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<h2>2.1.3<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Introduced additional inputs consistency check when using <cite>MEMORY SAVING</cite>. If this option is set to True, MODULO verifies that <cite>D=None</cite>, and requires data partitions to be already computed. We provide a routine to carry out this step (see Tutorial 4), but other routines can be used as long inputs are consistent.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2>2.1.0<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>mPOD bug fix: the previous version of mPOD was skipping the last scale of the frequency splitting vector. Fixed in this version.</p></li>
 <li><p>SPOD parallelisation: CSD - SPOD can now be parallelized, leveraging <cite>joblib</cite>. The user needs just to pass the argument <cite>n_processes</cite> for the computation to be
@@ -128,13 +135,13 @@ split between different workers.</p></li>
 <li><p>Extended documentation: the documentation has been significantly enriched, now including theoretical foundations for all the supported modal decomposition techniques.</p></li>
 </ol>
 </section>
-<section id="id2">
-<h2>2.0.7<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<section id="id3">
+<h2>2.0.7<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>Major updates:</p>
 <p>1. Faster EIG/SVD algorithms, using powerful randomized svd solvers from scikit_learn (see <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.TruncatedSVD.html">TruncatedSVD</a>
 and
 <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.extmath.randomized_svd.html">randomized_svd</a>) . It is now possible to select various options as “eig_solver” and “svd_solver”, offering different trade-offs in terms of accuracy vs computational time.</p>
-<ol class="arabic simple">
+<ol class="arabic simple" start="2">
 <li><p>In addition to the traditional POD computation using the K matrix (Sirovinch’s method), it is now possible to compute the POD directly via SVD using any of the four “svd_solver” options. This is generally faster but requires more memory.</p></li>
 <li><p>Much faster subscale estimators for the mPOD: the previous version used the rank of the correlation matrix in each scale to define the number of modes to be computed in each portion of the splitting vector. This is computationally very demanding. The estimation has been replaced by a frequency-based threshold (i.e. based on the frequency bins within each portion) since one can show that the frequency-based estimator is always more “conservative” than the rank-based estimator. Combining this estimator with a stochastic solver for eigendecomposition at each scale makes the mPOD much, much faster than before!</p></li>
 <li><p>Major improvement on the memory saving option: the previous version of modulo always required in input the matrix D. Then, if the memory saving option was active, the matrix was partitioned and stored locally to free the RAM before computing the correlation matrix (see this tutorial by D. Ninni <a class="reference external" href="https://www.youtube.com/watch?v=LclxO1WTuao">https://www.youtube.com/watch?v=LclxO1WTuao</a>). In the new version, it is possible to initialize a modulo object and create the data partitions  <em>without</em> loading the matrix D (see exercise 4 in the examples). This means that the only bottle neck is provided by the number of snapshots…!!</p></li>

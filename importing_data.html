@@ -116,14 +116,10 @@
 We use this feature in Example 1.</p>
 <p><strong>Option 2</strong>: a folder containing the data is provided and MODULO must assemble the snapshot matrix.
 We use this feature in Example 2.</p>
-<p>When operating with MEMORY_SAVING=True, MODULO will refrain from working on the full matrix D:</p>
-<ul class="simple">
-<li><p>if this matrix was provided (Option 1), MODULO will break the data into partitions, store them in a local folder and delete D from memory.</p></li>
-<li><p>if only the data folder was provided (Option 2), then MODULO will group the snapshots in different partitions and store them in a local folder.</p></li>
-</ul>
-<p>The format expected for the data is <code class="docutils literal notranslate"><span class="pre">.dat</span></code> or <code class="docutils literal notranslate"><span class="pre">.txt</span></code>.  Variants for <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files are in preparation.</p>
-<p>The codes to generate the matrix D are available in  <code class="docutils literal notranslate"><span class="pre">ReadData</span></code>. The main function is
-<em>_data_processing</em> in <em>read_db.py</em>.</p>
+<p>When operating with <cite>MEMORY_SAVING=True</cite>, MODULO will refrain from working on the full matrix D but relies on Option 2. The user must provide
+the folder containing the data partitions. We provide the method <cite>ReadData</cite> to carry out this chunking step, and we illustrate
+the complete workflow in Tutorial 4. <cite>ReadData</cite> can handle <code class="docutils literal notranslate"><span class="pre">.dat</span></code> or <code class="docutils literal notranslate"><span class="pre">.txt</span></code> files. However, the partitions can also be created with any other method,
+as long as the inputs to MODULO are consistent.</p>
 </section>
 
 
